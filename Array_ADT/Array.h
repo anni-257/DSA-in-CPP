@@ -68,11 +68,11 @@ Array::Array(int sz,int len){
 	}
 }
 
-/*void Array::display(){
+void Array::display(){
 	cout<<"Array elements are: ";
 	for(int i=0;i<length;i++){
 		cout<<A[i]<<" ";
 	}
 	cout<<endl;
-}*/
+}
 
