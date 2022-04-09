@@ -7,28 +7,31 @@ class Array{
 		int size;
 		int length;
 		int *A;
+		
 	public:
-	
 	Array();
 	Array(int sz, int length);
+	int getLength(){ return length;}
+	int getSize(){ return size;}
+	int* getArray(){ return A;}
 	void display();
 	void append(int x);
 	void insert(int index,int x);
 	void Delete(int index);
 	int linearSearch(int key);
-	int swap(int *x,int *y);
+	void swap(int *x,int *y);
 	int improve_LSearch(int key);
 	int binarySearch(int key);
-	int rBinarySearch(int key,int l,int h);
+	int rBinarySearch(int key, int h, int l);
 	int get(int index);
-	int replace(int index, int x);
+	void replace(int index, int x);
 	int max();
 	int min();
 	int sum();
 	float avg();
 	void reverse();
 	void reverse2();
-	void InsertSort(int x);
+	void insertSort(int x);
 	bool isSorted();
 	void rearrange();
 	void leftShift();
@@ -61,6 +64,7 @@ Array::Array(){
 
 Array::Array(int sz,int len){
 	size=sz;
+	A=new int[sz];
 	length=len;
 	cout<<"Enter all elements: "<<endl;
 	for(int i=0;i<length;i++){
@@ -74,5 +78,11 @@ void Array::display(){
 		cout<<A[i]<<" ";
 	}
 	cout<<endl;
+}
+
+void Array::swap(int *x,int *y){
+	int temp=*x;
+	*x=*y;
+	*y=temp;
 }
 
