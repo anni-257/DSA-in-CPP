@@ -1,0 +1,13 @@
+
+Ascii Codes=(0-127)
+			: takes 1 byte 
+UniCodes:
+			: takes 2 bytes Hexadecimal code
+
+A=65 B=66 ... Z=90
+a=97 b=98 ... z=122
+space=13  Enter=10  ESC=27
+
+*Character Array (Strings)
+
+
