@@ -10,6 +10,7 @@ class Array{
 		
 	public:
 	Array();
+	Array(int sz){ size=sz; }
 	Array(int sz, int length);
 	int getLength(){ return length;}
 	int getSize(){ return size;}
@@ -39,15 +40,15 @@ class Array{
 	void rightShift();
 	void rightRotate();
 	// For sorted 
-	Array* merge(Array arr);
-	Array* Union(Array arr);
-	Array* Inter(Array arr);
-	Array* diff(Array arr);
+	Array* merge(Array *arr);
+	Array* Union(Array *arr);
+	Array* inter(Array *arr);
+	Array* diff(Array *arr);
 	// For unsorted 
-	Array* unMerge(Array arr);
-	Array* unUnion(Array arr);
-	Array* unInter(Array arr);
-	Array* unDiff(Array arr);
+	Array* unMerge(Array *arr);
+	Array* unUnion(Array *arr);
+	Array* unInter(Array *arr);
+	Array* unDiff(Array *arr);
 };
 
 Array::Array(){
