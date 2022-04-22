@@ -1,0 +1,35 @@
+
+--> Machine code will not have variable names
+--> Compiler => Machine code
+--> variable represented by their address(During Execution)
+
+*-> Array Representation by Compiler
+
+>>> Index starting from Zero onwards
+addr(A[i])= Base Address + index * sizeOf dataType
+
+>> Index starting from One onwards
+addr(A[i])=Base Address + (index-1)*sizeOf dataType
+
+*-> Row Major Formula for 2D Arrays
+
+>> Index starting from Zero onwards
+addr(A[i][j])=Base Address + [i*Column+j]*sizeof dataType 
+    -------->
+    
+>> Index starting from One onwards
+addr(A[i][j])= Base Address + [(i-1)*Column+(j-1)]*sizeof dataType
+    <--------
+    
+*-> Column Major formula for 2D Arrays
+
+>> addr(A[i][j])=Base Address + [j*Row+i] * sizeof dataType
+
+***** General Concept *****
+A[d1][d2][d3][d4];
+-----------------> Row Major
+<----------------- Column Major
+
+>> Row major(left to right)
+
+Addr(A[i1][i2][i3][i4])=Base address+[i1*d2*d3*d4+i2*d3*d4+i3*d4+i4]*sizeOf dataType
