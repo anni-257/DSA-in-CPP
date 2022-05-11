@@ -78,3 +78,14 @@ void Link::display(){
 	cout<<"NULL"<<endl;
 	
 }
+
+int Link::countNode(){
+	int cnt=0;
+	Node* p=first;
+	
+	while(p){
+		cnt++;
+		p=p->next;
+	}
+	return cnt;
+}
