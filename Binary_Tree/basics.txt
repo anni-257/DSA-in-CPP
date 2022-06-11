@@ -1,0 +1,61 @@
+
+*********************************** Binary Tree **********************************
+
+if 'n' nodes are given :
+    log(n+1)-1 <= h <= n-1
+
+if 'h' height is given :
+    (2^h+1)-1 <= n <= n+1
+
+*********************************** Strict Binary Tree ************************************
+
+if 'n' nodes are given :
+    log(n+1)-1 <= h <= (n-1)/2
+
+if 'h' height is given :
+    2h+1 <= n <= (2^h+1)-1
+
+****************************************************************************************
+
+==> Types of Binary Trees:
+    1.Full Binary Tree
+    2.Complete Binary Tree
+    3.Perfect Binary Tree
+    4.Balanced Binary Tree
+    5.Degenerated Binary Tree
+
+1. Full Binary Trees:
+    either has 0 or 2 children
+
+                                A
+                            B       C
+                        D      E  F      G
+
+2. Complete Binary Tree:
+    1. All levels are completly filled except last level
+    2. The last level has all nodes in left as possible
+
+                                A
+                            B        C
+                        D      E  -     -
+
+3. Perfect Binary tree:
+    All leaf nodes are at same level 
+
+                                A
+                            B       C 
+                        D      E F     G
+
+4. Balanced Binary tree:
+    Height of tree at max log(n)
+
+5. Degenerated / Skewed 
+
+                                A
+                            B 
+                        C 
+                    D
+
+
+------------------------------------------------------------------------------------------------
+
