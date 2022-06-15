@@ -4,10 +4,8 @@ using namespace std;
 
 void Link::removeDuplicate(){
 	Node* p=first;
-	Node* q=first->next;
-	
+	Node* q=p->next;
 	while(q){
-	
 		if(p->val!=q->val){
 			p=q;
 			q=q->next;

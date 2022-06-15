@@ -29,6 +29,8 @@ public:
     vector<int> preOrder();                                         // Done
     vector<int> IterativeInOrder();                                 // Done
     vector<int> IterativePostOrder();                               // Done
+    
+    int count_Nodes(BTnode*);
     int maxHeight(BTnode *);                                        // Done
     bool isBalance(BTnode *p);                                      // Done O(n^2);
     bool isBalanced(BTnode *root) { return dfsHeight(root) != -1; } // Done O(n);
@@ -259,6 +261,19 @@ vector<int> Tree::IterativePostOrder()
         }
     }
     return postOrder;
+}
+
+int Tree::count_Nodes(BTnode* p){
+	int x,y;
+	
+	if(p){
+		x=count_Nodes(p->lchild);
+		y=count_Nodes(p->rchild);
+		
+		return x+y+1;
+	}
+	
+	return 0;
 }
 
 int Tree::maxHeight(BTnode *p)
