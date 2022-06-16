@@ -82,9 +82,48 @@ vector<int> DFS(int v,vector<vector<int>>& adj){
 	return dfs;
 }
 
+bool checkForCycle(int s,vector<vector<int>>& adj,vector<int>& visited){
+	queue<pair<int,int>>q;
+	visited[s]=1;
+	q.push({s,-1});
+	
+	while(!q.empty()){
+		int node=q.front().first;
+		int par=q.front().second;
+		q.pop();
+		
+		for(auto x:adj[node]){
+			if(!visited[x]){
+				visited[x]=1;
+				q.push({x,node});
+			}
+			else if(par!=x){
+				return true;
+			}
+		}
+	}
+	
+	return false;
+	
+}
+
+bool isCycle(int v,vector<vector<int>>& adj){
+	vector<int> visited(v+1,0);
+	for(int i=1;i<=v;i++){
+		if(!visited[i]){
+			if(checkForCycle(i,adj,visited)){
+				return true;
+			}
+		}
+		
+		
+	}
+	return false;
+}
+
 
 int main(){
-	int n=7;
+	int n=3;
 	cout<<"Creating Adjacent_Matrix"<<endl;
 	vector<vector<int>> adj_M=adj_Matrix();
 	
@@ -120,6 +159,8 @@ int main(){
 		cout<<x<<" ";
 	}
 	cout<<endl;
+	
+	cout<<"Is this graph contain cycle: "<<std::boolalpha<<isCycle(n,adj_L)<<endl;
 
 
 	return 0;
