@@ -60,9 +60,31 @@ vector<int> BFS(int v, vector<vector<int>>& adj){
 	return bfs;
 }
 
+void dfsOfGraph(int node, vector<int>& vis, vector<vector<int>>& adj, vector<int>& dfs){
+	dfs.push_back(node);
+	vis[node]=1;
+	for(auto x : adj[node]){
+		if(!vis[x]){
+			dfsOfGraph(x,vis,adj,dfs);
+		}
+	}
+}
+
+vector<int> DFS(int v,vector<vector<int>>& adj){
+	vector<int> dfs;
+	vector<int> vis(v+1);
+	
+	for(int i=1; i<=v; ++i){
+		if(!vis[i])
+			dfsOfGraph(i,vis,adj,dfs);
+		
+	}
+	return dfs;
+}
+
 
 int main(){
-	int n=6;
+	int n=7;
 	cout<<"Creating Adjacent_Matrix"<<endl;
 	vector<vector<int>> adj_M=adj_Matrix();
 	
@@ -87,6 +109,14 @@ int main(){
 	vector<int> bfs=BFS(n,adj_L);
 	
 	for(auto x:bfs){
+		cout<<x<<" ";
+	}
+	cout<<endl;
+	
+	cout<<"DFS of a Graph"<<endl;
+	vector<int> dfs=DFS(n,adj_L);
+	
+	for(auto x:dfs){
 		cout<<x<<" ";
 	}
 	cout<<endl;
