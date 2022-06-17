@@ -37,7 +37,7 @@ vector<vector<int>> adj_List(){
 vector<int> BFS(int v, vector<vector<int>>& adj){
 	vector<int> bfs;
 	vector<int> vis(v+1,0);
-	for(int i=1;i<v;i++){
+	for(int i=1;i<=v;i++){
 		if(!vis[i]){
 			queue<int>q;
 			q.push(i);
@@ -82,7 +82,7 @@ vector<int> DFS(int v,vector<vector<int>>& adj){
 	return dfs;
 }
 
-bool checkForCycle(int s,vector<vector<int>>& adj,vector<int>& visited){
+bool checkForCycleBFS(int s,vector<vector<int>>& adj,vector<int>& visited){
 	queue<pair<int,int>>q;
 	visited[s]=1;
 	q.push({s,-1});
@@ -107,11 +107,11 @@ bool checkForCycle(int s,vector<vector<int>>& adj,vector<int>& visited){
 	
 }
 
-bool isCycle(int v,vector<vector<int>>& adj){
+bool isCycleBFS(int v,vector<vector<int>>& adj){
 	vector<int> visited(v+1,0);
 	for(int i=1;i<=v;i++){
 		if(!visited[i]){
-			if(checkForCycle(i,adj,visited)){
+			if(checkForCycleBFS(i,adj,visited)){
 				return true;
 			}
 		}
@@ -121,9 +121,71 @@ bool isCycle(int v,vector<vector<int>>& adj){
 	return false;
 }
 
+bool checkForCycleDFS(pair<int,int> p, vector<int>& visited,vector<vector<int>>& adj){
+	visited[p.first]=true;
+	for(auto x: adj[p.first]){
+		if(!visited[x]){
+			if(checkForCycleDFS({x,p.first},visited,adj))
+				return true;
+		}
+		else if(x!=p.second)
+			return true;
+	}
+	
+	return false;
+}
+
+bool isCycleDFS(int v,vector<vector<int>>& adj){
+	vector<int> visited(v+1,0);
+	for(int i=1;i<=v; i++){
+		if(!visited[i]){
+			if(checkForCycleDFS({i,-1},visited,adj))
+				return true;
+		}
+		
+	}
+	
+	return false;
+}
+
+bool checkBipartiteBFS(int src,vector<vector<int>>& adj,vector<int>& color){
+	queue<int> q;
+	q.push(src);
+	color[src]=1;
+	while(!q.empty()){
+		int node=q.front();
+		q.pop();
+		
+		for(auto x: adj[node]){
+			if(color[x]==-1){
+				color[x]=1-color[node];
+				q.push(x);
+			}
+			else if(color[x]==color[node]){
+				return false;
+			}
+		}
+	}
+	
+	return true;
+}
+
+bool isBipartiteBFS(int v,vector<vector<int>> adj){
+	vector<int> color(v+1,-1);
+	for(int i=1;i<=v;i++){
+		if(color[i]==-1){
+			if(!checkBipartiteBFS(i,adj,color)){
+				return false;
+			}
+		}
+	}
+	
+	return true;
+}
+
 
 int main(){
-	int n=3;
+	int n=8;
 	cout<<"Creating Adjacent_Matrix"<<endl;
 	vector<vector<int>> adj_M=adj_Matrix();
 	
@@ -160,7 +222,9 @@ int main(){
 	}
 	cout<<endl;
 	
-	cout<<"Is this graph contain cycle: "<<std::boolalpha<<isCycle(n,adj_L)<<endl;
+	cout<<"Is this graph contain cycle BFS: "<<std::boolalpha<<isCycleBFS(n,adj_L)<<endl;
+	cout<<"Is this graph contain cycle DFS: "<<std::boolalpha<<isCycleDFS(n,adj_L)<<endl;
+	cout<<"Is this graph Bipartite: "<<std::boolalpha<<isBipartiteBFS(n,adj_L)<<endl;
 
 
 	return 0;
